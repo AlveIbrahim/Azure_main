@@ -18,31 +18,48 @@ const Solutions: React.FC = () => {
   const [showImageModal, setShowImageModal] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Slider images - using the same image multiple times as requested
+  // Check if device is mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Slider images with different images for mobile and desktop
   const sliderImages = [
     {
-      url: "https://i.imgur.com/2iWaPBf.jpeg",
+      desktop: "https://i.imgur.com/2iWaPBf.jpeg",
+      mobile: "https://i.imgur.com/zDE3NVU.jpeg", // Different mobile image
       title: "Professional Facility Management",
       subtitle: "Optimized workplace solutions"
     },
     {
-      url: "https://i.imgur.com/2iWaPBf.jpeg",
+      desktop: "https://i.imgur.com/2iWaPBf.jpeg",
+      mobile: "https://i.imgur.com/zDE3NVU.jpeg", // Different mobile image
       title: "Comprehensive Business Solutions",
       subtitle: "Empowering your business growth"
     },
     {
-      url: "https://i.imgur.com/2iWaPBf.jpeg",
+      desktop: "https://i.imgur.com/2iWaPBf.jpeg",
+      mobile: "https://i.imgur.com/zDE3NVU.jpeg", // Different mobile image
       title: "Strategic Consulting Services",
       subtitle: "Expert guidance for success"
     },
     {
-      url: "https://i.imgur.com/2iWaPBf.jpeg",
+      desktop: "https://i.imgur.com/2iWaPBf.jpeg",
+      mobile: "https://i.imgur.com/zDE3NVU.jpeg", // Different mobile image
       title: "Global Management Support",
       subtitle: "Worldwide operational excellence"
     },
     {
-      url: "https://i.imgur.com/2iWaPBf.jpeg",
+      desktop: "https://i.imgur.com/2iWaPBf.jpeg",
+      mobile: "https://i.imgur.com/zDE3NVU.jpeg", // Different mobile image
       title: "Marketing & PR Excellence",
       subtitle: "Elevate your brand presence"
     }
@@ -171,7 +188,7 @@ const Solutions: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <img
-              src={sliderImages[currentSlide].url}
+              src={isMobile ? sliderImages[currentSlide].mobile : sliderImages[currentSlide].desktop}
               alt={sliderImages[currentSlide].title}
               className="w-full h-full object-cover"
             />
