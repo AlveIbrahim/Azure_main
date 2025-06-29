@@ -23,6 +23,11 @@ const Solutions: React.FC = () => {
   const sliderImages = [
     {
       url: "https://i.imgur.com/2iWaPBf.jpeg",
+      title: "Professional Facility Management",
+      subtitle: "Optimized workplace solutions"
+    },
+    {
+      url: "https://i.imgur.com/2iWaPBf.jpeg",
       title: "Comprehensive Business Solutions",
       subtitle: "Empowering your business growth"
     },
@@ -35,11 +40,6 @@ const Solutions: React.FC = () => {
       url: "https://i.imgur.com/2iWaPBf.jpeg",
       title: "Global Management Support",
       subtitle: "Worldwide operational excellence"
-    },
-    {
-      url: "https://i.imgur.com/2iWaPBf.jpeg",
-      title: "Professional Facility Management",
-      subtitle: "Optimized workplace solutions"
     },
     {
       url: "https://i.imgur.com/2iWaPBf.jpeg",
@@ -57,6 +57,19 @@ const Solutions: React.FC = () => {
   }, [sliderImages.length]);
 
   const solutions = {
+    facility: {
+      icon: Settings,
+      title: 'Facility Management',
+      description: 'Complete facility management solutions for optimal workplace efficiency',
+      services: [
+        'Office/Residential Management',
+        'Security & Cleaning Services',
+        'Office Staff Support',
+        'Hospitality Services',
+        'Maintenance & Repairs',
+        'Vendor Management'
+      ]
+    },
     consultancy: {
       icon: Briefcase,
       title: 'Consultancy Services',
@@ -81,19 +94,6 @@ const Solutions: React.FC = () => {
         'Accounting & Reporting',
         'Secretarial Compliance',
         'Tax Compliance'
-      ]
-    },
-    facility: {
-      icon: Settings,
-      title: 'Facility Management',
-      description: 'Complete facility management solutions for optimal workplace efficiency',
-      services: [
-        'Office/Residential Management',
-        'Security & Cleaning Services',
-        'Office Staff Support',
-        'Hospitality Services',
-        'Maintenance & Repairs',
-        'Vendor Management'
       ]
     },
     promotion: {
@@ -459,7 +459,7 @@ const Solutions: React.FC = () => {
 
                   {/* Main Image */}
                   <motion.img
-                    src="https://i.imgur.com/zyYB0Aa.jpeg"
+                    src="https://i.imgur.com/lHeIwlE.jpeg"
                     alt={`${solutions[activeTab as keyof typeof solutions].title} Details`}
                     className="w-full h-auto max-h-[70vh] object-contain"
                     onLoad={() => setImageLoaded(true)}

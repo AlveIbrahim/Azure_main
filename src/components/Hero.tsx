@@ -83,9 +83,85 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
         animate="visible"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Information */}
+          {/* Right Side - Professional Image - Mobile First */}
           <motion.div 
-            className="space-y-8"
+            className="relative order-1 lg:order-2"
+            variants={itemVariants}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <motion.div
+              className="relative rounded-2xl overflow-hidden shadow-2xl"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Image Container */}
+              <div className="relative">
+                <img
+                  src="https://i.imgur.com/kN9Hsyh.png"
+                  alt="Professional Business Solutions"
+                  className="w-full h-auto object-cover"
+                  style={{ maxHeight: '600px' }}
+                />
+                
+                {/* Overlay for better text readability */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-t from-azure-dark/20 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"
+                />
+              </div>
+
+              {/* Floating Badge */}
+              <motion.div
+                className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="flex items-center space-x-2">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-semibold text-azure-dark">Available 24/7</span>
+                </div>
+              </motion.div>
+
+              {/* Bottom Info Card */}
+              <motion.div
+                className="absolute bottom-6 right-6 bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg max-w-xs"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="text-sm">
+                  <div className="font-semibold text-azure-dark mb-1">Trusted by 1000+ Companies</div>
+                  <div className="text-gray-600">Join the success story</div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Decorative Elements */}
+            <motion.div
+              className="absolute -top-4 -right-4 w-24 h-24 bg-azure-light/30 rounded-full blur-xl"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            />
+            <motion.div
+              className="absolute -bottom-4 -left-4 w-32 h-32 bg-azure-medium/20 rounded-full blur-xl"
+              animate={{ 
+                scale: [1.2, 1, 1.2],
+                opacity: [0.2, 0.4, 0.2]
+              }}
+              transition={{ duration: 5, repeat: Infinity }}
+            />
+          </motion.div>
+
+          {/* Left Side - Information - Mobile Second */}
+          <motion.div 
+            className="space-y-8 order-2 lg:order-1"
             variants={itemVariants}
           >
             <motion.h1 
@@ -208,81 +284,7 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Professional Image */}
-          <motion.div 
-            className="relative"
-            variants={itemVariants}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <motion.div
-              className="relative rounded-2xl overflow-hidden shadow-2xl"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Image Container */}
-              <div className="relative">
-                <img
-                  src="https://i.imgur.com/kN9Hsyh.png"
-                  alt="Professional Business Solutions"
-                  className="w-full h-auto object-cover"
-                  style={{ maxHeight: '600px' }}
-                />
-                
-                {/* Overlay for better text readability */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-azure-dark/20 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"
-                />
-              </div>
 
-              {/* Floating Badge */}
-              <motion.div
-                className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-semibold text-azure-dark">Available 24/7</span>
-                </div>
-              </motion.div>
-
-              {/* Bottom Info Card */}
-              <motion.div
-                className="absolute bottom-6 right-6 bg-white/95 backdrop-blur-sm rounded-lg p-4 shadow-lg max-w-xs"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="text-sm">
-                  <div className="font-semibold text-azure-dark mb-1">Trusted by 1000+ Companies</div>
-                  <div className="text-gray-600">Join the success story</div>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Decorative Elements */}
-            <motion.div
-              className="absolute -top-4 -right-4 w-24 h-24 bg-azure-light/30 rounded-full blur-xl"
-              animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3]
-              }}
-              transition={{ duration: 4, repeat: Infinity }}
-            />
-            <motion.div
-              className="absolute -bottom-4 -left-4 w-32 h-32 bg-azure-medium/20 rounded-full blur-xl"
-              animate={{ 
-                scale: [1.2, 1, 1.2],
-                opacity: [0.2, 0.4, 0.2]
-              }}
-              transition={{ duration: 5, repeat: Infinity }}
-            />
-          </motion.div>
         </div>
       </motion.div>
     </section>

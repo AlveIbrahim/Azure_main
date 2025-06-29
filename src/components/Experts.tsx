@@ -19,7 +19,7 @@ const Experts: React.FC = () => {
 
   const founder = {
     id: 0,
-    name: 'Dr. Sarah Johnson',
+    name: 'Dr. John Doe',
     title: 'Founder & CEO',
     image: 'https://i.imgur.com/kN9Hsyh.png',
     location: 'New York, USA',

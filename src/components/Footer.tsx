@@ -162,7 +162,7 @@ const Footer: React.FC<FooterProps> = ({ setActiveSection }) => {
                 <MapPin className="w-5 h-5 text-azure-light mt-1 group-hover:text-white transition-colors" />
                 <div>
                   <p className="text-azure-light group-hover:text-white transition-colors">
-                    Global City, GC 12345
+                    Banani, Dhaka
                   </p>
                 </div>
               </motion.div>
@@ -173,10 +173,10 @@ const Footer: React.FC<FooterProps> = ({ setActiveSection }) => {
               >
                 <Phone className="w-5 h-5 text-azure-light group-hover:text-white transition-colors" />
                 <a 
-                  href="tel:+15551234567" 
+                  href="tel:01717525051" 
                   className="text-azure-light hover:text-white transition-colors"
                 >
-                  +1 (555) 123-4567
+                  01717525051
                 </a>
               </motion.div>
               
@@ -186,10 +186,10 @@ const Footer: React.FC<FooterProps> = ({ setActiveSection }) => {
               >
                 <Mail className="w-5 h-5 text-azure-light group-hover:text-white transition-colors" />
                 <a 
-                  href="mailto:info@azurebusinesssolution.com" 
+                  href="mailto:info@azure360.biz" 
                   className="text-azure-light hover:text-white transition-colors"
                 >
-                  info@azurebusinesssolution.com
+                  info@azure360.biz
                 </a>
               </motion.div>
             </div>
