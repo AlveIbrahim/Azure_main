@@ -1,6 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 
-const ParticleBackground: React.FC = () => {
+interface ParticleBackgroundProps {
+  className?: string;
+}
+
+const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ className }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -89,7 +93,7 @@ const ParticleBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
+      className={`absolute inset-0 w-full h-full pointer-events-none ${className || ''}`}
       style={{ zIndex: 1 }}
     />
   );

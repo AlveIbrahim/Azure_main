@@ -9,70 +9,13 @@ import {
   ChevronRight,
   CheckCircle,
   X,
-  ZoomIn,
-  ChevronLeft
+  ZoomIn
 } from 'lucide-react';
 
 const Solutions: React.FC = () => {
   const [activeTab, setActiveTab] = useState('consultancy');
   const [showImageModal, setShowImageModal] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Check if device is mobile on mount and resize
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // Slider images with different images for mobile and desktop
-  const sliderImages = [
-    {
-      desktop: "https://i.imgur.com/2iWaPBf.jpeg",
-      mobile: "https://i.imgur.com/zDE3NVU.jpeg", // Different mobile image
-      title: "Professional Facility Management",
-      subtitle: "Optimized workplace solutions"
-    },
-    {
-      desktop: "https://i.imgur.com/2iWaPBf.jpeg",
-      mobile: "https://i.imgur.com/zDE3NVU.jpeg", // Different mobile image
-      title: "Comprehensive Business Solutions",
-      subtitle: "Empowering your business growth"
-    },
-    {
-      desktop: "https://i.imgur.com/2iWaPBf.jpeg",
-      mobile: "https://i.imgur.com/zDE3NVU.jpeg", // Different mobile image
-      title: "Strategic Consulting Services",
-      subtitle: "Expert guidance for success"
-    },
-    {
-      desktop: "https://i.imgur.com/2iWaPBf.jpeg",
-      mobile: "https://i.imgur.com/zDE3NVU.jpeg", // Different mobile image
-      title: "Global Management Support",
-      subtitle: "Worldwide operational excellence"
-    },
-    {
-      desktop: "https://i.imgur.com/2iWaPBf.jpeg",
-      mobile: "https://i.imgur.com/zDE3NVU.jpeg", // Different mobile image
-      title: "Marketing & PR Excellence",
-      subtitle: "Elevate your brand presence"
-    }
-  ];
-
-  // Auto-slide functionality
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [sliderImages.length]);
-
   const solutions = {
     facility: {
       icon: Settings,
@@ -166,109 +109,10 @@ const Solutions: React.FC = () => {
     setShowImageModal(true);
   };
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
-  };
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + sliderImages.length) % sliderImages.length);
-  };
 
   return (
     <section className="relative">
-      {/* Photo Slider at the top */}
-      <div className="relative h-screen w-full overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            className="absolute inset-0"
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.8 }}
-          >
-            <img
-              src={isMobile ? sliderImages[currentSlide].mobile : sliderImages[currentSlide].desktop}
-              alt={sliderImages[currentSlide].title}
-              className="w-full h-full object-cover"
-            />
-            
-            {/* Shadow overlay covering entire screen */}
-            <div className="absolute inset-0 bg-black/50" />
-            
-            {/* Content overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div
-                className="text-center text-white max-w-4xl px-4"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-              >
-                <motion.h1 
-                  className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                >
-                  {sliderImages[currentSlide].title}
-                </motion.h1>
-                <motion.p 
-                  className="text-xl md:text-2xl mb-8 opacity-90"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7, duration: 0.8 }}
-                >
-                  {sliderImages[currentSlide].subtitle}
-                </motion.p>
-                <motion.div
-                  className="flex justify-center space-x-2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.9, duration: 0.8 }}
-                >
-                  {sliderImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        index === currentSlide ? 'bg-white' : 'bg-white/50'
-                      }`}
-                    />
-                  ))}
-                </motion.div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Navigation arrows */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-all duration-300 z-10"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-all duration-300 z-10"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-
-        {/* Slide indicators */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
-          {sliderImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-12 h-1 rounded-full transition-all duration-300 ${
-                index === currentSlide ? 'bg-white' : 'bg-white/50'
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-
       {/* Solutions Content */}
       <div className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <motion.div 
