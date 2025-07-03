@@ -11,7 +11,8 @@ import Industries from './components/Industries';
 import Experts from './components/Experts';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ThreeBackground from './components/ThreeBackground';
+// import ThreeBackground from './components/ThreeBackground';
+import ParallelogramServices from './components/ParallelogramServices';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -19,7 +20,10 @@ export default function App() {
   const renderSection = () => {
     switch (activeSection) {
       case 'home':
-        return <Hero setActiveSection={setActiveSection} />;
+        return <>
+          <Hero setActiveSection={setActiveSection} />
+          <ParallelogramServices />
+        </>;
       case 'about':
         return <About />;
       case 'solutions':
@@ -38,7 +42,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white relative">
       {/* Three.js Background - only show on home section */}
-      {activeSection === 'home' && <ThreeBackground />}
+      {/* {activeSection === 'home' && <ThreeBackground />} */}
       
       <Header activeSection={activeSection} setActiveSection={setActiveSection} />
       
