@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Eye, Award, Users } from 'lucide-react';
 import InteractiveOrb from './InteractiveOrb';
-import ParallelogramServices from './ParallelogramServices';
+import ParallelogramServices from './FacilitiesServices';
 
 const About: React.FC = () => {
   const values = [

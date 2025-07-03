@@ -12,7 +12,11 @@ import Experts from './components/Experts';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 // import ThreeBackground from './components/ThreeBackground';
-import ParallelogramServices from './components/ParallelogramServices';
+import FacilitiesServices from './components/FacilitiesServices';
+import LiaisonServices from './components/LiaisonServices';
+import PromotionPRServices from './components/PromotionPRServices';
+import ManagementSupportServices from './components/ManagementSupportServices';
+import ConsultationServices from './components/ConsultationServices';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -22,7 +26,11 @@ export default function App() {
       case 'home':
         return <>
           <Hero setActiveSection={setActiveSection} />
-          <ParallelogramServices />
+          <FacilitiesServices />
+          <LiaisonServices />
+          <PromotionPRServices />
+          <ManagementSupportServices />
+          <ConsultationServices />
         </>;
       case 'about':
         return <About />;
