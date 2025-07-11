@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-
+import React from 'react';
+import { motion } from 'framer-motion';
+import { containerVariants, titleVariants, itemVariants, facilitiesServiceVariants, viewportSettings } from '../lib/animations';
 const services = [
   {
     text: 'Office/\nResidence\nUtility &\nOverall\nmanagement',
@@ -36,83 +37,100 @@ const parallelogramStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  position: 'relative',
+  position: 'relative' as const,
   transition: 'transform 0.7s cubic-bezier(0.4,0,0.2,1), box-shadow 0.7s cubic-bezier(0.4,0,0.2,1)',
 };
 
 const ParallelogramServices: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
-      },
-      {
-        threshold: 0.3,
-        rootMargin: '0px 0px -100px 0px',
-      }
-    );
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   return (
-    <section ref={sectionRef} className="my-32 max-w-7xl mx-auto px-4">
-      <div className={`flex flex-col md:flex-row items-center md:items-stretch gap-8 transition-all duration-1000 ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}> 
+    <motion.section 
+      className="my-32 max-w-7xl mx-auto px-4"
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportSettings}
+      variants={containerVariants}
+    >
+      {/* Our Solutions Heading */}
+      <motion.div
+        className="text-center mb-16"
+        variants={itemVariants}
+      >
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">Our Solutions</h1>
+        <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+          Comprehensive business solutions to help your company grow and succeed.
+        </p>
+      </motion.div>
+
+      <motion.div 
+        className="flex flex-col md:flex-row items-center md:items-stretch gap-8"
+        variants={containerVariants}
+      >
         {/* Title/Description on the left */}
-        <div className="flex-1 flex flex-col justify-center md:justify-start md:pr-32">
+        <motion.div 
+          className="flex-1 flex flex-col justify-center md:justify-start md:pr-32"
+          variants={titleVariants}
+        >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-800 text-left">
             Facility Management Services
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl text-left leading-relaxed">
             Managing a commercial or residence space is not easy, the critical management problems that comes with management of these spaces can be solved with Azure Facility Management Support Service where we take care of the following
           </p>
-        </div>
+        </motion.div>
+        
         {/* Shapes on the right */}
-        <div className="flex flex-row items-center justify-center md:justify-end gap-8">
+        <motion.div 
+          className="flex flex-row items-center justify-center md:justify-end gap-8"
+          variants={facilitiesServiceVariants}
+        >
           {services.map((service, idx) => (
-            <div
+            <motion.div
               key={idx}
               style={{
                 ...parallelogramStyle,
                 background: service.bg,
                 color: service.color,
               }}
-              className={`flex-shrink-0 hover:scale-105 hover:shadow-lg`}
+              className="flex-shrink-0"
+              whileHover={{ 
+                scale: 1.05, 
+                rotateY: 5,
+                boxShadow: "12px 12px 25px rgba(0,0,0,0.2)"
+              }}
+              transition={{ duration: 0.3 }}
             >
-              <span
+              <div
                 style={{
                   transform: 'skew(15deg)',
-                  display: 'block',
-                  whiteSpace: 'pre-line',
-                  fontWeight: 700,
-                  fontSize: 18,
-                  textAlign: 'center',
-                  lineHeight: 1.3,
-                  width: '90%',
-                  color: '#fff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '100%',
+                  height: '100%',
                 }}
               >
-                {service.text}
-              </span>
-            </div>
+                <span
+                  style={{
+                    display: 'block',
+                    whiteSpace: 'pre-line',
+                    fontWeight: 700,
+                    fontSize: 16,
+                    textAlign: 'center',
+                    lineHeight: 1.2,
+                    color: '#fff',
+                    fontStyle: 'normal',
+                  }}
+                >
+                  {service.text}
+                </span>
+              </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 };
 
-export default ParallelogramServices; 
+export default ParallelogramServices;

@@ -26,10 +26,11 @@ export default function App() {
       case 'home':
         return <>
           <Hero setActiveSection={setActiveSection} />
+          <About />
           <FacilitiesServices />
-          <LiaisonServices />
-          <PromotionPRServices />
           <ManagementSupportServices />
+          <PromotionPRServices />
+          <LiaisonServices />
           <ConsultationServices />
         </>;
       case 'about':

@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { containerVariants, titleVariants, liaisonServiceVariants, viewportSettings } from '../lib/animations';
 
 const services = [
   {
@@ -22,40 +24,26 @@ const services = [
 const trapezoidClip = 'polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%)';
 
 const LiaisonServices: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
-      },
-      {
-        threshold: 0.3,
-        rootMargin: '0px 0px -100px 0px'
-      }
-    );
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   return (
-    <section ref={sectionRef} className="my-32 max-w-7xl mx-auto px-4">
-      <div className={`flex flex-col md:flex-row items-center md:items-stretch gap-8 transition-all duration-1000 ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+    <motion.section 
+      className="my-32 max-w-7xl mx-auto px-4"
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportSettings}
+      variants={containerVariants}
+    >
+      <motion.div 
+        className="flex flex-col md:flex-row items-center md:items-stretch gap-8"
+        variants={containerVariants}
+      >
         {/* Shapes on the left */}
-        <div className="flex flex-row items-center justify-center md:justify-start gap-8">
+        <motion.div 
+          className="flex flex-row items-center justify-center md:justify-start gap-8"
+          variants={liaisonServiceVariants}
+        >
           {services.map((service, idx) => (
-            <div
+            <motion.div
               key={idx}
               style={{
                 background: service.bg,
@@ -66,13 +54,19 @@ const LiaisonServices: React.FC = () => {
                 WebkitClipPath: trapezoidClip,
                 zIndex: 10 - idx,
                 boxShadow: '8px 8px 20px rgba(0,0,0,0.15)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-                transition: 'transform 0.7s cubic-bezier(0.4,0,0.2,1), box-shadow 0.7s cubic-bezier(0.4,0,0.2,1)',
+                display: 'flex' as const,
+                alignItems: 'center' as const,
+                justifyContent: 'center' as const,
+                position: 'relative' as const,
               }}
-              className={`flex-shrink-0 hover:scale-105 hover:shadow-lg`}
+              className="flex-shrink-0"
+              whileHover={{ 
+                scale: 1.1,
+                y: -15,
+                rotateX: 10,
+                boxShadow: "15px 15px 35px rgba(0,0,0,0.3)"
+              }}
+              transition={{ duration: 0.3 }}
             >
               <span
                 style={{
@@ -88,21 +82,25 @@ const LiaisonServices: React.FC = () => {
               >
                 {service.text}
               </span>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+        
         {/* Title/Description on the right */}
-        <div className="flex-1 flex flex-col justify-center md:justify-start md:pl-12">
+        <motion.div 
+          className="flex-1 flex flex-col justify-center md:justify-start md:pl-12"
+          variants={titleVariants}
+        >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-800 text-left">
             Liaison Service
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl text-left leading-relaxed">
             Networking in Business is crucial for growth and expansion, we connect our clients with our robust network to enhance their Network leading to business. Furthermore Network will our clients' businesses to facilitate.
           </p>
-        </div>
-      </div>
-    </section>
+        </motion.div>
+      </motion.div>
+    </motion.section>
   );
 };
 
-export default LiaisonServices; 
+export default LiaisonServices;
