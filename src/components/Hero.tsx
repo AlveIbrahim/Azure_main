@@ -32,26 +32,26 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
     {
       desktop: "https://i.imgur.com/1RIn70n.png",
       mobile: "https://i.imgur.com/zDE3NVU.jpeg",
-      title: "Your Global Business Partner",
-      subtitle: "Empowering businesses worldwide with comprehensive solutions"
+      // title: "Your Global Business Partner",
+      // subtitle: "Empowering businesses worldwide with comprehensive solutions"
     },
     {
       desktop: "https://i.imgur.com/1RIn70n.png",
       mobile: "https://i.imgur.com/zDE3NVU.jpeg",
-      title: "Strategic Excellence",
-      subtitle: "Transform your vision into reality with expert guidance"
+      // title: "Strategic Excellence",
+      // subtitle: "Transform your vision into reality with expert guidance"
     },
     {
       desktop: "https://i.imgur.com/1RIn70n.png",
       mobile: "https://i.imgur.com/zDE3NVU.jpeg",
-      title: "Comprehensive Solutions",
-      subtitle: "End-to-end business support for sustainable growth"
+      // title: "Comprehensive Solutions",
+      // subtitle: "End-to-end business support for sustainable growth"
     },
     {
       desktop: "https://i.imgur.com/1RIn70n.png",
       mobile: "https://i.imgur.com/zDE3NVU.jpeg",
-      title: "Global Reach",
-      subtitle: "Worldwide expertise with local market knowledge"
+      // title: "Global Reach",
+      // subtitle: "Worldwide expertise with local market knowledge"
     }
   ];
 
@@ -97,7 +97,7 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
             />
             
             {/* Shadow overlay covering entire screen */}
-            <div className="absolute inset-0 bg-black/50" />
+            {/* <div className="absolute inset-0 bg-black/50" /> */}
             
             {/* Content overlay */}
             <div className="absolute inset-0 flex items-center justify-center">
